@@ -1,7 +1,7 @@
 void heapify(int arr[], int size, int current);
 void heapSort(int arr[], int size);
 void quickSort(int array[], int low, int high);
-void BubbleSort(int arr[], int n);
+void bubbleSort(int arr[], int n);
 void printArray(int array[], int size);
 void swap(int* a, int* b);
 int main()
@@ -62,7 +62,7 @@ void quickSort(int array[], int low, int high)
     quickSort(array, pi + 1, high);
   }
 }
-void BubbleSort(int arr[], int n)
+void bubbleSort(int arr[], int n)
 {
    int i, j;
    for (i = 0; i < n; i++)
