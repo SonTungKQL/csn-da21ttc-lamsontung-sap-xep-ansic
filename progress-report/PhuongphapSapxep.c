@@ -4,25 +4,18 @@ void quickSort(int array[], int low, int high);
 void bubbleSort(int arr[], int n);
 void printArray(int array[], int size);
 void swap(int* a, int* b);
-int main()
+void printList();
+void insert(int data);
+
+struct node 
 {
-    int arr[]= {12,6,10,5,1,9};
-    int size= sizeof(arr)/sizeof(arr[0]);
-    heapSort(arr, size);
+   int data;
+   struct node *next;
+};
 
-    printf("Mang chua sap xep: \n");
-    printArray(arr, size);
-    quickSort(arr, 0, size - 1);
-    printf("Mảng được sắp xếp theo thứ tự tăng dần: \n");
-    printArray(arr, size);
-  
+struct node *head = printArray;
+struct node *current = printArray;
 
-    printf("Mảng được sắp xếp là: \n");
-    for (int i = 0; i < size; i++)
-    {
-        printf("%d\t", arr[i]);
-    }
-}
 void heapify(int arr[], int size, int current)
 {
     int largest = current;
@@ -102,4 +95,50 @@ int partition(int array[], int low, int high)
     }
     swap(&array[i + 1], &array[high]);
     return (i + 1);
+}
+void printList() 
+{
+
+   struct node *ptr = head;
+
+   printf("\n[head] =>");
+   //bat dau tu phan dau cua list
+   while(ptr != printArray) {        
+      printf(" %d =>",ptr->data);
+      ptr = ptr->next;
+   }
+
+   printf(" [null]\n");
+}
+void insert(int data) 
+{
+   struct node *link = (struct node*) malloc(sizeof(struct node));
+
+   link->data = data;
+
+   link->next = head;
+
+   head = link;
+}
+int main()
+{
+    int arr[]= {12,6,10,5,1,9};
+    int size= sizeof(arr)/sizeof(arr[0]);
+    heapSort(arr, size);
+    printf("Mang chua sap xep: \n");
+    
+    printArray(arr, size);
+    quickSort(arr, 0, size - 1);
+    printf("Mảng được sắp xếp theo thứ tự tăng dần: \n");
+    printArray(arr, size);
+
+    bubbleSort(arr, size - 1);
+    printList();
+  
+
+    printf("Mảng được sắp xếp là: \n");
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d\t", arr[i]);
+    }
 }
