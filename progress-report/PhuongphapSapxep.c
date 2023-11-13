@@ -134,8 +134,14 @@ int main()
 
     bubbleSort(arr, size - 1);
     printList();
-  
 
+    insert(12);
+    insert(6);
+    insert(10);
+    insert(5);
+    insert(1);
+    insert(9);
+  
     printf("Mảng được sắp xếp là: \n");
     for (int i = 0; i < size; i++)
     {
