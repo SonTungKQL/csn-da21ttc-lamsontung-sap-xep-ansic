@@ -9,6 +9,10 @@ void quickSort(int array[], int low, int high);
 void bubbleSort(int arr[], int n);
 void printArray(int array[], int size);
 void swap(int* a, int* b);
+void insertFirst(int key, int data);
+void printList();
+void sort();
+void reverse(struct node** head_ref);
 
 struct node  
 {
@@ -171,45 +175,36 @@ struct node* find(int key){
 }
 struct node* deleteKey(int key){
 
-   //bat dau tu first link
    struct node* current = head;
    struct node* previous = NULL;
-	
-   //neu list la trong
+
    if(head == NULL){
       return NULL;
    }
-
-   //duyet qua list
-   while(current->key != key){
-	
-      //neu day la last node
-      if(current->next == NULL){
+   while(current->key != key)
+   {
+      if(current->next == NULL)
+      {
          return NULL;
       }else {
-         //luu tham chieu toi link hien tai
          previous = current;
-         //di chuyen toi next link
+
          current = current->next;             
       }
 		
    }
-
-   //cap nhat link
-   if(current == head) {
-      //thay doi first de tro toi next link
+   if(current == head)
+   {
       head = head->next;
-   }else {
-      //bo qua link hien tai
+   }else{
+
       previous->next = current->next;
    }    
 	
    return current;
 }
-
-// ham sap xep
-void sort(){
-
+void sort()
+{
    int i, j, k, tempKey, tempData ;
    struct node *current;
    struct node *next;
@@ -238,9 +233,8 @@ void sort(){
       }
    }   
 }
-
-// ham dao nguoc list
-void reverse(struct node** head_ref) {
+void reverse(struct node** head_ref) 
+{
    struct node* prev   = NULL;
    struct node* current = *head_ref;
    struct node* next;
@@ -258,6 +252,14 @@ int main()
 {
     int arr[]= {12,6,10,5,1,9};
     int size= sizeof(arr)/sizeof(arr[0]);
+
+    insertFirst(1,10);
+    insertFirst(2,20);
+    insertFirst(3,30);
+    insertFirst(4,1);
+    insertFirst(5,40);
+    insertFirst(6,56);
+
     heapSort(arr, size);
     printf("Mang chua sap xep: \n");
     
@@ -267,9 +269,69 @@ int main()
     printArray(arr, size);
     bubbleSort(arr, size - 1);
 
+    printf("Danh sach ban dau: "); 
+    printList();
+
     printf("Mảng được sắp xếp là: \n");
     for (int i = 0; i < size; i++)
     {
         printf("%d\t", arr[i]);
     }
+
+    printf("Danh sach ban dau: "); 
+    printList();
+
+    while(!isEmpty()){            
+      struct node *temp = deleteFirst();
+      printf("\nGia tri bi xoa:");  
+      printf("(%d,%d) ",temp->key,temp->data);        
+    }  
+	
+    printf("\nDanh sach sau khi da xoa gia tri: ");          
+    printList();
+    insertFirst(1,10);
+    insertFirst(2,20);
+    insertFirst(3,30);
+    insertFirst(4,1);
+    insertFirst(5,40);
+    insertFirst(6,56); 
+    printf("\nPhuc hoi danh sach: ");  
+    printList();
+    printf("\n");  
+
+    struct node *foundLink = find(4);
+        
+    if(foundLink != NULL)
+    {
+        printf("Tim thay phan tu: ");  
+        printf("(%d,%d) ",foundLink->key,foundLink->data);  
+        printf("\n");  
+    }else {
+        printf("Khong tim thay phan tu.");  
+    }
+
+    deleteKey(4);
+    printf("Danh sach, sau khi xoa mot phan tu: ");  
+    printList();
+    printf("\n");
+    foundLink = find(4);
+        
+    if(foundLink != NULL)
+    {
+        printf("Tim thay phan tu: ");  
+        printf("(%d,%d) ",foundLink->key,foundLink->data);  
+        printf("\n");  
+    }else {
+        printf("Khong tim thay phan tu.");  
+    }
+        
+    printf("\n");  
+    sort();
+        
+    printf("Danh sach sau khi duoc sap xep: ");  
+    printList();
+        
+    reverse(&head);
+    printf("\nDanh sach sau khi bi dao nguoc: ");  
+    printList();
 }
